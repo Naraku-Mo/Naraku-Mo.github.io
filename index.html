@@ -183,9 +183,93 @@
             
 
 <div class="post">
+    <a href="/2022/07/31/二进制运算/">
+        <h2>
+            二进制运算
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/7/31
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>刷算法题遇到二进制就非常之头疼，故在此做一个学习记录：</p>
+<h1 id="一、进制"><a href="#一、进制" class="headerlink" title="一、进制"></a>一、进制</h1><ul>
+<li>进制也就是进位计数制，是人为定义的带进位的计数方法，对于任何一种进制—X进制，就表示每一位上的数运算时都是逢X进一位。</li>
+<li>我们平时所使用的计数法则为十进制，即个位满10就向高位进一位，十位为1，个位回到0；二进制就是满2时向高位进1位，当前位置为0。</li>
+<li>“数制”只是一套符号系统来表示指称“量”的多少。我们用“1”这个符号来表示一个这一“量”的概念。自然界的“量”是无穷的，我们不可能为每一个“量”都造一个符号，这样的系统没人记得住。所以必须用有限的符号按一定的规律进行排列组合来表示这无限的“量”。符号是有限的，这些符号按照某种规则进行排列组合的个数是无限的。十进制是10个符号的排列组合，二进制是2个符号的排列组合。</li>
+</ul>
+<h1 id="二、二进制运算法则"><a href="#二、二进制运算法则" class="headerlink" title="二、二进制运算法则"></a>二、二进制运算法则</h1><h2 id="1-算术运算（加减乘除）"><a href="#1-算术运算（加减乘除）" class="headerlink" title="1. 算术运算（加减乘除）"></a>1. 算术运算（加减乘除）</h2><p>二进制的加减乘除与十进制基本相同，只是数字的表示方法不一样。</p>
+<blockquote>
+<p>（1）二进制的加法：0+0&#x3D;0，0+1&#x3D;1 ，1+0&#x3D;1， 1+1&#x3D;10(向高位进位)；<br>（2）二进制的减法：0-0&#x3D;0，10-1&#x3D;1(向高位借位) 1-0&#x3D;1，1-1&#x3D;0 (模二加运算或异或运算) ；<br>（3）二进制的乘法：0 * 0 &#x3D; 0　0 * 1 &#x3D; 0，1 * 0 &#x3D; 0，1 * 1 &#x3D; 1<br>（4）二进制的除法：0÷0 &#x3D; 0，0÷1 &#x3D; 0，1÷0 &#x3D; 0 (无意义)，1÷1 &#x3D; 1 ；</p>
+</blockquote>
+<hr>
+<ul>
+<li>由于四位二进制可以表示为一位十六进制，故一般将二进制按四位进行分段表示</li>
+</ul>
+<h2 id="2-逻辑运算"><a href="#2-逻辑运算" class="headerlink" title="2. 逻辑运算"></a>2. 逻辑运算</h2><blockquote>
+<p>（1）二进制的<strong>或</strong>运算：遇1得1 （存真则真）<br>（2）二进制的<strong>与</strong>运算：遇0得0 （遇假则假）<br>（3）二进制的<strong>非</strong>运算：各位取反</p>
+</blockquote>
+<h1 id="三、进制转换"><a href="#三、进制转换" class="headerlink" title="三、进制转换"></a>三、进制转换</h1><h2 id="1-权的概念"><a href="#1-权的概念" class="headerlink" title="1. 权的概念"></a>1. 权的概念</h2><h3 id="（1）基本概念"><a href="#（1）基本概念" class="headerlink" title="（1）基本概念"></a>（1）基本概念</h3><ul>
+<li><strong>“权”就是进制为基底的n次幂</strong>，如二进制的权就是（2）^n	、十进制的权就是（10）^n<br>看到十进制我们就很自然的想到科学计算法中的（10）^n。有了权这个定义之后，我们就可以随便把一个进制的数转化成另一个进制的数了。日常生活中，由于电脑的字节，汉字西文的字节的原因，二进制最常见的转换是八进制，十六进制，三十二进制和十进制。</li>
+</ul>
+<h3 id="（2）数字按权展开"><a href="#（2）数字按权展开" class="headerlink" title="（2）数字按权展开"></a>（2）数字按权展开</h3><ul>
+<li>任何进制中，每个数都可以按位权展开成各个数位上的数字乘以对应数位的位权，再相加的形式，如：<br>十进制的123&#x3D;1×100+2×10+3×1<br>十进制的9876&#x3D;9×1000+8×100+7×10+6×1<br>十进制，满十进一，再满十再进一，因此要想进到第三位，得有10×10；第4位得有10×10×10<br>这样我们就知道了：<br>（1）对10进制，从低位到高位，依次要乘以10^0	、10^1	、10^2、	10^3……，也就是1、10、100、1000<br>（2）对2进制，从低位到高位，依次要乘以2^0	、2^1	、2^2	、2^3……，也就是1、2、4、8、……</li>
+<li>模仿上面十进制按位权展开的方式，<strong>把二进制数1011按权展开</strong>：<blockquote>
+<p>1011&#x3D;1×2^3+0×2^2+1×2^1+1×2^0&#x3D;1×8+0×4+1×2+1×1&#x3D;8+2+1&#x3D;11</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-进制转换"><a href="#2-进制转换" class="headerlink" title="2. 进制转换"></a>2. 进制转换</h2><p>以二进制为例，其他进制均是类似的方法</p>
+<h3 id="（1）按权展开凑数法——其他进制转换为十进制"><a href="#（1）按权展开凑数法——其他进制转换为十进制" class="headerlink" title="（1）按权展开凑数法——其他进制转换为十进制"></a>（1）按权展开凑数法——其他进制转换为十进制</h3><p><strong>一个数字可以展开为各个数位上的数字乘以对应数位的位权</strong>，得到的数值即为十进制。</p>
+<blockquote>
+<p>十进制数：1234 &#x3D; 1 * 10^3 + 2 * 10^2 + 3 * 10^1 + 4 * 10^0<br>二进制数：1011&#x3D;1×2^3	+	0×2^2	+1×2^1	+1×2^0&#x3D;11</p>
+</blockquote>
+<h3 id="（2）短除法——十进制转换为其他进制"><a href="#（2）短除法——十进制转换为其他进制" class="headerlink" title="（2）短除法——十进制转换为其他进制"></a>（2）短除法——十进制转换为其他进制</h3><p>将一个十进制数的商递归除以要转换的进制数（二进制为2），余数倒排即可，下图中6的二进制数即为110，转换为其他进制也是同理。<br><img src="https://img-blog.csdnimg.cn/d8be5595d38143da93835df0c5454f8a.png" alt="将十进制数字6转换为二进制数"><br><img src="https://img-blog.csdnimg.cn/71d6bfb83b2844b386ffe0b87f859549.png" alt="将十进制数字120转换为八进制数"><br>120转换为8进制，结果为：170</p>
+<hr>
+<ul>
+<li>特别的，16进制就是逢16进1，但我们只有0~9这十个数字，所以我们用A，B，C，D，E，F这六个字母来分别表示10，11，12，13，14，15，字母不区分大小写。</li>
+</ul>
+<h2 id="3-十进制负数的进制转换"><a href="#3-十进制负数的进制转换" class="headerlink" title="3. 十进制负数的进制转换"></a>3. 十进制负数的进制转换</h2><h3 id="（1）原码、反码、补码"><a href="#（1）原码、反码、补码" class="headerlink" title="（1）原码、反码、补码"></a>（1）原码、反码、补码</h3><ul>
+<li><strong>正数的原码、反码、补码相同！</strong></li>
+<li>（1）<strong>负数的原码</strong>：一个负数按绝对值大小转为二进制数，再在最高位上补1，即可得到负数的原码</li>
+<li>（2）<strong>负数的反码</strong>：原码除符号位外，各位取反</li>
+<li>（3）<strong>负数的补码</strong>：原码除符号位外，各位取反，最后一位再加1<br><em><strong>（负数在计算机中按补码形式表示）</strong></em></li>
+</ul>
+<h3 id="（2）负数的进制转换"><a href="#（2）负数的进制转换" class="headerlink" title="（2）负数的进制转换"></a>（2）负数的进制转换</h3><p>正数转换为二进制后，最高位补1，就得到负数转换后的二进制数。</p>
+<h1 id="四、移位运算"><a href="#四、移位运算" class="headerlink" title="四、移位运算"></a>四、移位运算</h1><ol>
+<li>左移运算符（&lt;&lt;）<br> 按二进制形式把所有的数字向左移动对应的位数，高位移出(舍弃)，低位的空位补零。例如： 1 &lt;&lt; i，则是将数字1左移i位</li>
+<li>位与运算<br> n&amp;（1&lt;&lt;i）：通过位与运算用1来检验数字n二进制的i位置上是1还是0</li>
+</ol>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99/3459235?fr=aladdin">二进制的运算法则</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/3117222?fr=aladdin">进制转换</a></li>
+<li><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/e676a581f624ccbff121dd36a32d7375a417c6c7.html">负数的二进制转换方法</a></li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/07/31/二进制运算/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/07/28/hello-world/">
         <h2>
-            Hello World
+            How to Use Hexo
         </h2>
     </a>
     <div class="category-and-date">
@@ -200,17 +284,16 @@
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+            <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo s
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo g
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo d
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
