@@ -193,10 +193,10 @@
     <div id="comment">
         <div id="gitalk-container"></div>
         
-
+<!--  -->
 
 <script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<link rel="stylesheet" href="/js/md5.min.js">
+<!-- <link rel="stylesheet" href="/js/md5.min.js"> -->
 <script>
     var clientID = "466f4ce54e1876d46ec7", clientSecret = "aff45425da1c087a7a308d23427bfb3f3942b202";
     
@@ -207,7 +207,7 @@
         owner: "Naraku-Mo",
         admin: ["Naraku-Mo"],
         language: "zh-CN",
-        id: md5(location.pathname),
+        id: location.pathname,
         distractionFreeMode: false,
         
     })
