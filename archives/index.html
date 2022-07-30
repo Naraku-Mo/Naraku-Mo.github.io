@@ -39,7 +39,12 @@
         <div id="L2dCanvas">
             <script src="/js/live2d.min.js"></script>
             <script src="/css/live2d.css"></script>
-            <script>
+            <div id="landlord">
+                <div class="message" style="opacity:0;"></div>
+                <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+                <div class="hide-button">隐藏</div>
+            </div>
+            <!-- <script>
                 var v = new Viewer({
                     width: 240,
                     height: 325,
@@ -49,7 +54,7 @@
                     role: "dunkeerke_2",
                     mobile: true,
                 });
-            </script>
+            </script> -->
             <script type="text/javascript" src="/js/anime.min.js"></script>
             <canvas id="fireworks"
                 style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483647"></canvas>
@@ -217,6 +222,17 @@
     }).render('gitalk-container')
 </script>
 
+        <script type="text/javascript">
+            // var message_Path = 'http://localhost:8888/blog/lib/Pio/static/js/message.js' //message.js/pio.js的目录（必须填写，否则无法加载交互的文字，交互文字可自己更改js文件内容）
+            var home_Path = 'https://github.com/Naraku-Mo/naraku-mo.github.io' //自己网站的根目录
+        </script>
+        
+        <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script type="text/javascript">
+            loadlive2d("live2d", "https://raw.githubusercontent.com/Naraku-Mo/MyBlogcomments/main/model/dunkeerke_2/dunkeerke_2.model3.json"); //model.json和其模型等都需要放在服务器网站上，需要什么模型更改不同路径的model.json即可
+        </script>
+       
     </body>
 
     </html>
