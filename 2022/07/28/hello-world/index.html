@@ -193,20 +193,27 @@
     <div id="comment">
         <div id="gitalk-container"></div>
         
-<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
 <link rel="stylesheet" href="/js/md5.min.js">
-<script type="text/javascript">
-    new Gitalk({
-    clientID: '466f4ce54e1876d46ec7',
-    clientSecret: 'aff45425da1c087a7a308d23427bfb3f3942b202',
-    repo: 'naraku-mo.github.io', 
-    owner: 'Naraku-Mo',
-    admin: 'Naraku-Mo',
-    id: md5(location.pathname),
-    distractionFreeMode: true
-    }).render('gitalk-container')
+<script>
+    var clientID = "466f4ce54e1876d46ec7", clientSecret = "aff45425da1c087a7a308d23427bfb3f3942b202";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "MyBlogcomments",
+        owner: "Naraku-Mo",
+        admin: ["Naraku-Mo"],
+        language: "zh-CN",
+        id: md5(location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
 </script>
+
 
     </div>
      
