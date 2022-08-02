@@ -11,7 +11,7 @@
         <meta name="author" content="Naraku">
         <meta name="description" content="simple is the best">
         <meta name="keywords" content="">
-        <link rel="icon" href="https://avatars.githubusercontent.com/u/44114411?v=4">
+        <link rel="icon" href="https://avatars.githubusercontent.com/u/44114411?s=400&u=705faff163d1ad5abe4ef1a99652d43498da2ef9&v=4">
         <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
         <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
         
@@ -35,28 +35,16 @@
                 </div>
             </div>
         </div>
-        <div id="L2dCanvas">
-            <script src="/js/live2d.min.js"></script>
-            <script src="/css/live2d.css"></script>
-            <script>
-                var v = new Viewer({
-                    width: 240,
-                    height: 325,
-                    right: "0",
-                    bottom: "0",
-                    basePath: "/model",
-                    role: "dunkeerke_2",
-                    mobile: true,
-                });
-            </script>
-            <script type="text/javascript" src="/js/anime.min.js"></script>
+        <div id="L2dCanvas"></div>
             <canvas id="fireworks"
                 style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483647"></canvas>
-            <script src="/js/fireworks.js"></script>
             <canvas id="background"
                 style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
-            <script src="/js/background.js"></script>
-        </div>
+                <script src="//js/live2d.min.js"></script>
+                <script src="//css/live2d.css"></script>
+                <script src="/js/anime.min.js"></script>
+                <script src="/js/fireworks.js"></script>
+                <script src="/js/background.js"></script>
         <div id="layout">
             <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
             <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
@@ -199,7 +187,12 @@
 <li>由于四位二进制可以表示为一位十六进制，故一般将二进制按四位进行分段表示</li>
 </ul>
 <h2 id="2-逻辑运算"><a href="#2-逻辑运算" class="headerlink" title="2. 逻辑运算"></a>2. 逻辑运算</h2><blockquote>
-<p>（1）二进制的<strong>或</strong>运算：遇1得1 （存真则真）<br>（2）二进制的<strong>与</strong>运算：遇0得0 （遇假则假）<br>（3）二进制的<strong>非</strong>运算：各位取反</p>
+<p>（1）二进制的<strong>或</strong>运算：遇1得1 （存真则真）<br>（2）二进制的<strong>与</strong>运算：遇0得0 （遇假则假）<br>（3）二进制的<strong>非</strong>运算：各位取反<br>（4）逻辑“异或”运算：取值相同为0，取值相异为1</p>
+<ul>
+<li><strong>任何数和0做异或运算，结果仍然是原来的数</strong></li>
+<li>任何数和其自身做异或运算，结果是0</li>
+<li>异或运算满足交换律和结合律：<em>a</em>⊕<em>b</em>⊕<em>a</em>&#x3D;<em>b</em>⊕<em>a</em>⊕<em>a</em>&#x3D;<em>b</em>⊕(<em>a</em>⊕<em>a</em>)&#x3D;<em>b</em>⊕0&#x3D;<em>b</em></li>
+</ul>
 </blockquote>
 <h1 id="三、进制转换"><a href="#三、进制转换" class="headerlink" title="三、进制转换"></a>三、进制转换</h1><h2 id="1-权的概念"><a href="#1-权的概念" class="headerlink" title="1. 权的概念"></a>1. 权的概念</h2><h3 id="（1）基本概念"><a href="#（1）基本概念" class="headerlink" title="（1）基本概念"></a>（1）基本概念</h3><ul>
 <li><strong>“权”就是进制为基底的n次幂</strong>，如二进制的权就是（2）^n	、十进制的权就是（10）^n<br>看到十进制我们就很自然的想到科学计算法中的（10）^n。有了权这个定义之后，我们就可以随便把一个进制的数转化成另一个进制的数了。日常生活中，由于电脑的字节，汉字西文的字节的原因，二进制最常见的转换是八进制，十六进制，三十二进制和十进制。</li>
@@ -232,6 +225,36 @@
 <li>左移运算符（&lt;&lt;）<br> 按二进制形式把所有的数字向左移动对应的位数，高位移出(舍弃)，低位的空位补零。例如： 1 &lt;&lt; i，则是将数字1左移i位</li>
 <li>位与运算<br> n&amp;（1&lt;&lt;i）：通过位与运算用1来检验数字n二进制的i位置上是1还是0</li>
 </ol>
+<h1 id="五、Leetcode解题应用"><a href="#五、Leetcode解题应用" class="headerlink" title="五、Leetcode解题应用"></a>五、Leetcode解题应用</h1><p>​	一道Top100的easy题目——只出现一次的数字。</p>
+<p>​	解题时想到：</p>
+<ol>
+<li><p>两层循环的暴力解法；</p>
+</li>
+<li><p>先排序后遍历：即使用Array.sort()排序，时间复杂度也为O(nlogn)，而非题目要求的线性；</p>
+</li>
+<li><p>HashSet：非常数级别的空间复杂度，可用contains()函数检查，最后返回数字需要调用h.iterator().next()；</p>
+<p>这里也有三种解题思路：</p>
+<p>（1）使用哈希集合存储数字。遍历数组中的每个数字，如果集合中没有该数字，则将该数字加入集合，如果集合中已经有该数字，则将该数字从集合中删除，最后剩下的数字就是只出现一次的数字</p>
+<p>（2）使用哈希表存储每个数字和该数字出现的次数。遍历数组即可得到每个数字出现的次数，并更新哈希表，最后遍历哈希表，得到只出现一次的数字。</p>
+<p>（3）使用集合存储数组中出现的所有数字，并计算数组中的元素之和。由于集合保证元素无重复，因此计算集合中的所有元素之和的两倍，即为每个元素出现两次的情况下的元素之和。由于数组中只有一个元素出现一次，其余元素都出现两次，因此用集合中的元素之和的两倍减去数组中的元素之和，剩下的数就是数组中只出现一次的数字。</p>
+</li>
+</ol>
+<p>而真正符合题目要求的方法——<strong>位运算</strong>（常数级空间+线性时间复杂度）</p>
+<ul>
+<li>此处运用了异或运算的性质：异或运算满足交换律和结合律！（详见本文第二部分中的逻辑运算）</li>
+</ul>
+<p>故数组中所有元素进行异或运算，就可以交换后写成这样的形式：</p>
+<blockquote>
+<p><em>(a<sub>1</sub>⊕a<sub>1</sub>)⊕(a<sub>2</sub>⊕a<sub>2</sub>)⊕⋯⊕(a<sub>m</sub>⊕a<sub>m</sub>)⊕a<sub>m+1</sub>&#x3D;0⊕a<sub>m+1</sub></em></p>
+</blockquote>
+<p>因此，对数组中所有元素进行异或运算就可以得到只出现过一次的数字。</p>
+<pre><code class="java">     class Solution &#123;
+         public int singleNumber(int[] nums) &#123;
+             return Arrays.stream(nums).reduce((a,b)-&gt;a^b).getAsInt();
+         &#125;
+     &#125;
+</code></pre>
+<p>​     </p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99/3459235?fr=aladdin">二进制的运算法则</a></li>
 <li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/3117222?fr=aladdin">进制转换</a></li>
@@ -240,13 +263,51 @@
 
     </div>
     
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
     <div id="comment">
-        <div id="gitalk-container"></div>
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+    <!-- <div id="toc-card" style="font-size:8px;position:fixed;bottom: 10px;right: 200px;display:flex;opacity:0">
         
-<!--  -->
 
+<div id="post-toc" style="width: 300px">
+    <div id="post-toc-inner">
+        <strong class="sidebar-title">Catalogue</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BF%9B%E5%88%B6"><span class="toc-text">一、进制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99"><span class="toc-text">二、二进制运算法则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%EF%BC%88%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%EF%BC%89"><span class="toc-text">1. 算术运算（加减乘除）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="toc-text">2. 逻辑运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-text">三、进制转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9D%83%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 权的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">（1）基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%95%B0%E5%AD%97%E6%8C%89%E6%9D%83%E5%B1%95%E5%BC%80"><span class="toc-text">（2）数字按权展开</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-text">2. 进制转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%8C%89%E6%9D%83%E5%B1%95%E5%BC%80%E5%87%91%E6%95%B0%E6%B3%95%E2%80%94%E2%80%94%E5%85%B6%E4%BB%96%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="toc-text">（1）按权展开凑数法——其他进制转换为十进制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E7%9F%AD%E9%99%A4%E6%B3%95%E2%80%94%E2%80%94%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B6%E4%BB%96%E8%BF%9B%E5%88%B6"><span class="toc-text">（2）短除法——十进制转换为其他进制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8D%81%E8%BF%9B%E5%88%B6%E8%B4%9F%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-text">3. 十进制负数的进制转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81"><span class="toc-text">（1）原码、反码、补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%B4%9F%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-text">（2）负数的进制转换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-text">四、移位运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81Leetcode%E8%A7%A3%E9%A2%98%E5%BA%94%E7%94%A8"><span class="toc-text">五、Leetcode解题应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+</div>
+    </div> -->
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 Horsejoy
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @Naraku
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
 <script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<!-- <link rel="stylesheet" href="/js/md5.min.js"> -->
 <script>
     var clientID = "466f4ce54e1876d46ec7", clientSecret = "aff45425da1c087a7a308d23427bfb3f3942b202";
     
@@ -265,54 +326,8 @@
 </script>
 
 
-    </div>
-     
-</div>
-                             
-<footer id="footer">
-    <div class="footer-wrap">
-        <div>
-            © 2022 - 2022 Horsejoy
-            <span class="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            @Naraku
-        </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a></div>
-        
-    </div>
-</footer>
-                    </div>
-                </div>
-            </transition>
-            <div id="img_show">
-                <img id="img_content" alt="img_show">
-            </div>
-
-        </div>
-        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
-        <script src="/js/particlex.js"></script>
-        <script src="/js/showimg.js"></script>
-        
-<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-<link rel="stylesheet" href="/js/md5.min.js">
-<script type="text/javascript">
-    new Gitalk({
-    clientID: '466f4ce54e1876d46ec7',
-    clientSecret: 'aff45425da1c087a7a308d23427bfb3f3942b202',
-    repo: 'naraku-mo.github.io', 
-    owner: 'Naraku-Mo',
-    admin: 'Naraku-Mo',
-    id: md5(location.pathname),
-    distractionFreeMode: true
-    }).render('gitalk-container')
-</script>
-
-        <style type="text/css">
-            #totop {
-        background: -webkit-linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
+        <script src="/js/totop.js" async></script>
+        <a id="totop" class="go-post" title="返回顶部" style="position:fixed;bottom: -5px;right:0px;background: -webkit-linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
         background: -moz-linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
         background: -o-linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
         background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
@@ -322,31 +337,15 @@
         font-weight: bold;
         border-radius: 20px 0;
         font-size: 14px;
-        position: fixed;
-        bottom: -5px;
-        right: -5px;
         -webkit-transition: all 0.25s ease-out;
         -moz-transition: all 0.25s ease-out;
         -o-transition: all 0.25s ease-out;
         transition: all 0.25s ease-out;
-        box-shadow: 2px 2px 10px 0px rgba(255, 187, 244, 0.478);
-        }     
-     #totop .music:hover {
-    opacity: 1.0;
-    top: 2px;
-    box-shadow: -2px -2px 10px 0px rgba(154, 187, 247, 0.478);
-    }
-
-        </style>
-        <script type='text/javascript' src="/js/totop.js" async></script>
-        <a id="totop">⬆️Top</a>
-    <div class="music" style="position: fixed; bottom: -5px;left: -5px;width: 300px;z-index:9999;opacity:0.7">
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=86
-            src="//music.163.com/outchain/player?type=2&id=1296302555&auto=1&height=66"></iframe>
-    </div> 
-        <!-- 网易云音乐插件
-         -->
-        <!--  -->
+        box-shadow: 2px 2px 10px 0px rgba(255, 187, 244, 0.478);">⬆️Top</a>
+        <div style="position:fixed;bottom: -5px;left: -5px;opacity:0.8">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+                src="//music.163.com/outchain/player?type=2&id=5057820&auto=1&height=66"></iframe>
+        </div>
     </body>
+
     </html>
-    

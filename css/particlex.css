@@ -1666,3 +1666,48 @@ footer .footer-icon {
         width: 100%;
     }
 }
+#post-toc-inner::after,#post-toc-inner::before,
+.inner::after,inner::before{
+    content: "";
+    display: table;
+}
+#post-toc-inner::after,.inner::after{
+    clear: both;
+}
+@media screen {
+    #post-toc-inner,.inner{
+        padding: 0 20px;
+    } 
+}
+#post-toc{
+    display: none;
+    float: right;
+    width: 25%;
+    margin-right: -220px;
+    opacity: .8;
+}
+@media screen and (min-width:1600px){
+    #post-toc{
+        display: block;
+    }
+}
+#post-toc.toc-fixed{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 220px;
+    padding-top: 55px;
+}
+.toc-fixed #post-toc-inner{
+    position: fixed;
+    width: 220px;
+    top: 0;
+    bottom: 0;
+    padding-top: 55px;
+}
+#post-toc-inner ol{
+    margin-left: -16px;
+}
+#toc-card:hover{
+    opacity: 1.0;
+}
